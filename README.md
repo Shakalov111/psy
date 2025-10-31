@@ -425,4 +425,5 @@ Hibernate:
 Oct 31, 2025 12:49:51 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PoolState stop
 INFO: HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:5432/college_db]
 ```#   p s y  
+ #   p s y  
  

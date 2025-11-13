@@ -51,154 +51,7 @@ public class MainApp {
 
         // Перша транзакція: Додавання даних 
         try (Session session = factory.openSession()) {
-            // Початок транзакції
-            session.beginTransaction();
-
-            // Додавання даних в Departments
-            Psychologist dept1 = new Psychologist();
-            dept1.setName("Комп`ютерні науки");
-            dept1.setLocation("Корпус A");
-
-            Psychologist dept2 = new Psychologist();
-            dept2.setName("Математика");
-            dept2.setLocation("Корпус B");
-
-            session.save(dept1);
-            session.save(dept2);
-
-            // Додавання даних в Teachers
-            Teacher teacher1 = new Teacher();
-            teacher1.setFirstName("Іван");
-            teacher1.setLastName("Петренко");
-            teacher1.setDepartment(dept1); // Комп'ютерні науки
-
-            Teacher teacher2 = new Teacher();
-            teacher2.setFirstName("Оксана");
-            teacher2.setLastName("Коваль");
-            teacher2.setDepartment(dept2); // Математика
-
-            session.save(teacher1);
-            session.save(teacher2);
-
-            // Додавання даних в Students
-            Student student1 = new Student();
-            student1.setFirstName("Аліса");
-            student1.setLastName("Мельник");
-            student1.setDepartment(dept1); // Комп'ютерні науки
-
-            Student student2 = new Student();
-            student2.setFirstName("Богдан");
-            student2.setLastName("Іванов");
-            student2.setDepartment(dept2); // Математика
-
-            Student student3 = new Student();
-            student3.setFirstName("Катерина");
-            student3.setLastName("Левченко");
-            student3.setDepartment(dept1); // Комп'ютерні науки
-
-            Student student4 = new Student();
-            student4.setFirstName("Дмитро");
-            student4.setLastName("Шевченко");
-            student4.setDepartment(dept1); // Комп'ютерні науки
-
-            Student student5 = new Student();
-            student5.setFirstName("Олена");
-            student5.setLastName("Петренко");
-            student5.setDepartment(dept2); // Математика
-
-            session.save(student1);
-            session.save(student2);
-            session.save(student3);
-            session.save(student4);
-            session.save(student5);
-
-            // Додавання даних в Courses
-            Clinic course1 = new Clinic();
-            course1.setCourseName("Вступ до програмування");
-            course1.setDepartment(dept1); // Комп'ютерні науки
-            course1.setCredits(3);
-
-            Clinic course2 = new Clinic();
-            course2.setCourseName("Математичний аналіз I");
-            course2.setDepartment(dept2); // Математика
-            course2.setCredits(4);
-
-            session.save(course1);
-            session.save(course2);
-
-            // Додавання даних в Rooms
-            Room room1 = new Room();
-            room1.setRoomNumber("210");
-            room1.setCapacity(30);
-
-            Room room2 = new Room();
-            room2.setRoomNumber("212");
-            room2.setCapacity(50);
-
-            session.save(room1);
-            session.save(room2);
-
-            // Додавання даних в Class Schedules
-            ClassSchedule schedule1 = new ClassSchedule();
-            schedule1.setCourse(course1);
-            schedule1.setTeacher(teacher1);
-            schedule1.setRoom(room1);
-            schedule1.setSemester("Осінь");
-            schedule1.setYear(2024);
-            schedule1.setStartTime(LocalTime.parse("09:00:00"));
-            schedule1.setEndTime(LocalTime.parse("10:30:00"));
-
-            ClassSchedule schedule2 = new ClassSchedule();
-            schedule2.setCourse(course2);
-            schedule2.setTeacher(teacher2);
-            schedule2.setRoom(room2);
-            schedule2.setSemester("Осінь");
-            schedule2.setYear(2024);
-            schedule2.setStartTime(LocalTime.parse("11:00:00"));
-            schedule2.setEndTime(LocalTime.parse("12:30:00"));
-
-            session.save(schedule1);
-            session.save(schedule2);
-
-            // Додавання даних в Enrollments
-            // 3 студенти записані на 'Вступ до програмування'
-            Enrollment enrollment1 = new Enrollment();
-            enrollment1.setStudent(student1); // Аліса
-            enrollment1.setCourse(course1);   // Вступ до програмування
-            enrollment1.setEnrollmentDate(java.time.LocalDate.now());
-
-            Enrollment enrollment2 = new Enrollment();
-            enrollment2.setStudent(student3); // Катерина
-            enrollment2.setCourse(course1);   // Вступ до програмування
-            enrollment2.setEnrollmentDate(java.time.LocalDate.now());
-
-            Enrollment enrollment3 = new Enrollment();
-            enrollment3.setStudent(student4); // Дмитро
-            enrollment3.setCourse(course1);   // Вступ до програмування
-            enrollment3.setEnrollmentDate(java.time.LocalDate.now());
-
-            session.save(enrollment1);
-            session.save(enrollment2);
-            session.save(enrollment3);
-
-            // 2 студенти записані на 'Математичний аналіз I'
-            Enrollment enrollment4 = new Enrollment();
-            enrollment4.setStudent(student2); // Богдан
-            enrollment4.setCourse(course2);   // Математичний аналіз I
-            enrollment4.setEnrollmentDate(java.time.LocalDate.now());
-
-            Enrollment enrollment5 = new Enrollment();
-            enrollment5.setStudent(student5); // Олена
-            enrollment5.setCourse(course2);   // Математичний аналіз I
-            enrollment5.setEnrollmentDate(java.time.LocalDate.now());
-
-            session.save(enrollment4);
-            session.save(enrollment5);
-
-            // Підтвердження транзакції
-            session.getTransaction().commit();
-            System.out.println("Дані успішно збережено!");
-
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -209,33 +62,35 @@ public class MainApp {
             session.beginTransaction();
 
             // Виконання запиту
-            String hql = "SELECT new com.college.ScheduleInfoDTO(" +
-                    "s.firstName, s.lastName, " +
-                    "t.firstName, t.lastName, " +
-                    "c.courseName, d.name, " +
-                    "r.roomNumber, cs.semester, " +
-                    "cs.year, cs.startTime, cs.endTime) " +
-                    "FROM Enrollment e " +
-                    "JOIN e.student s " +
-                    "JOIN e.course c " +
-                    "JOIN c.classSchedules cs " +
-                    "JOIN cs.teacher t " +
-                    "JOIN c.department d " +
-                    "JOIN cs.room r";
+            String hql = "SELECT new com.psy.InfoDTO(" +
+                    "c.firstName, c.lastName, " +
+                    "p.Name, p.meetingPlatform, " +
+                    "prepayment, " +
+                    "CONCAT(c.package, ' ', c.sessionNumber), " +
+                    "s.topic," +
+                    "p.expirience,"+
+                    "CONCAT(cl.city, ' ', cl.street, ' ', cl.house),"+
+                    "s.date" +
+                    "FROM p_session s " +
+                    "JOIN s.client c " +
+                    "JOIN s.psychologist p " +
+                    "JOIN p.clinic cl ";
+
 
             List<InfoDTO> results = session.createQuery(hql, InfoDTO.class).getResultList();
 
             // Обробка результатів
             for (InfoDTO info : results) {
-                System.out.println("Студент: " + info.getStudentFirstName() + " " + info.getStudentLastName());
-                System.out.println("Викладач: " + info.getTeacherFirstName() + " " + info.getTeacherLastName());
-                System.out.println("Курс: " + info.getCourseName());
-                System.out.println("Кафедра: " + info.getDepartmentName());
-                System.out.println("Аудиторія: " + info.getRoomNumber());
-                System.out.println("Семестр: " + info.getSemester());
-                System.out.println("Рік: " + info.getYear());
-                System.out.println("Час початку: " + info.getStartTime());
-                System.out.println("Час закінчення: " + info.getEndTime());
+                System.out.println("Ім'я клієнта: " + info.getClientFirstName() + " " + info.getClientFirstName());
+                System.out.println("Фамілія психолога: " + info.getPsychologistName());
+                System.out.println("Платформа відеозв'язку: " + info.getMeetingPlatform());
+                System.out.println("Тип передплати: " + info.getPrepayment());
+                System.out.println("Пакет сеансів: " + info.getSessionPackage());
+                System.out.println("Тема сеансів: " + info.getTopic());
+                System.out.println("Стаж психолога: " + info.getExpirience());
+                System.out.println("Адреса клініки: " + info.getClinicAdress());
+                System.out.println("Телефон клініки: " + info.getClinicPhoneNumber());
+                System.out.println("Дата зустрічі: " + info.getDate());
                 System.out.println("--------------------------------------------------");
             }
 

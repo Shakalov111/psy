@@ -14,10 +14,11 @@ public class InfoDTO {
     private int expirience;
     private String clinicAdress;
     private LocalDate date;
+    private String clinicPhoneNumber;
 
 
     // Constructor
-    public InfoDTO(String clientFirstName, String clientLastName, String psychologistName, String meetingPlatform, String prepayment,String sessionPackage, String topic, int expirience, String clinicAdress, LocalDate date){
+    public InfoDTO(String clientFirstName, String clientLastName, String psychologistName, String meetingPlatform, String prepayment,String sessionPackage, String topic, int expirience, String clinicAdress, String clinicPhoneNumber, LocalDate date){
         this.topic = topic;
         this.clientFirstName = clientFirstName;
         this.clientLastName = clientLastName;
@@ -28,6 +29,7 @@ public class InfoDTO {
         this.date = date;
         this.expirience = expirience;
         this.clinicAdress = clinicAdress;
+        this.clinicPhoneNumber = clinicPhoneNumber;
 
 
     }
@@ -71,5 +73,9 @@ public class InfoDTO {
 
     public String getTopic() {
         return topic;
+    }
+
+    public String getClinicPhoneNumber() {
+        return clinicPhoneNumber;
     }
 }

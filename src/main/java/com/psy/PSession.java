@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "p_session")
-public class Session {
+public class PSession {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,6 +60,11 @@ public class Session {
 
     public void setPsychologist(Psychologist psychologist) {
         this.psychologist = psychologist;
+    }
+
+    public void setTopic(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setTopic'");
     }
 }
     

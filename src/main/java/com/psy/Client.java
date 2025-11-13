@@ -14,7 +14,7 @@ public class Client {
     private String firstName;
 
     @Column(name = "last_name")
-    private int lastName;
+    private String lastName;
 
 
     @Column(name = "prepaymant")
@@ -35,7 +35,7 @@ public class Client {
         return firstName;
     }
 
-    public int getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
@@ -59,7 +59,7 @@ public class Client {
         this.firstName = firstName;
     }
 
-    public void setLastName(int lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
@@ -73,5 +73,10 @@ public class Client {
 
     public void setSessionNumber(int sessionNumber) {
         this.sessionNumber = sessionNumber;
+    }
+
+    public void setSessionPackage(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setSessionPackage'");
     }
 }

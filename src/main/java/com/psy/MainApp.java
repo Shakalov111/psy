@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -51,7 +52,37 @@ public class MainApp {
 
         // Перша транзакція: Додавання даних 
         try (Session session = factory.openSession()) {
-            
+
+            Clinic clinic = new Clinic();
+            clinic.setCity("Київ");
+            clinic.setStreet("вул. Психології");
+            clinic.setHouse("1");
+            clinic.setPhoneNumber("380449940101");
+            session.persist(clinic);
+
+            Psychologist psy = new Psychologist();
+            psy.setName("Олег Гнатюк");
+            psy.setExperiece(9);
+            psy.setMeetingPlatform("Zoom");
+            psy.setClinic(clinic);
+            session.persist(psy);
+
+            Client client = new Client();
+            client.setFirstName("Антонюк");
+            client.setLastName("Іван");
+            client.setPrepayment("Basic");
+            client.setSessionPackage("CBT");
+            client.setSessionNumber(12);
+            session.persist(client);
+
+            PSession psySession = new PSession();
+            psySession.setClient(client);
+            psySession.setPsychologist(psy);
+            psySession.setTopic("тривога");
+            psySession.setDate(LocalDate.now());
+            session.persist(psySession);
+            ;
+                        
         } catch (Exception e) {
             e.printStackTrace();
         }

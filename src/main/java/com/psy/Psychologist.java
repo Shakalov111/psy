@@ -3,7 +3,7 @@ package com.psy;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "departments")
+@Table(name = "psychologist")
 public class Psychologist {
     @Id
     @Column(name = "id")
@@ -13,15 +13,15 @@ public class Psychologist {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "expiriece")
-    private int expiriece;
+    @Column(name = "experiece")
+    private int experiece;
 
      @Column(name = "meeting_platform")
-    private int meetingPlatform;
+    private String meetingPlatform;
 
     @ManyToOne
     @JoinColumn(name = "clinic_id")
-    private int clinicId;
+    private Clinic clinic;
 
     // Getters and Setters
     public int getPsychologistId() {
@@ -32,16 +32,16 @@ public class Psychologist {
         return name;
     }
 
-    public int getExpiriece() {
-        return expiriece;
+    public int getExperiece() {
+        return experiece;
     }
 
-    public int getMeetingPlatform() {
+    public String getMeetingPlatform() {
         return meetingPlatform;
     }
 
-    public int getClinicId() {
-        return clinicId;
+    public int getClinic() {
+        return clinic.getClinicId();
     }
 
     public void setPsychologistId(int psychologistId) {
@@ -51,15 +51,15 @@ public class Psychologist {
     public void setName(String name) {
         this.name = name;
     }
-    public void setExpiriece(int expiriece) {
-        this.expiriece = expiriece;
+    public void setExperiece(int experiece) {
+        this.experiece = experiece;
     }
 
-    public void setMeetingPlatform(int meetingPlatform) {
+    public void setMeetingPlatform(String meetingPlatform) {
         this.meetingPlatform = meetingPlatform;
     }
 
-    public void setClinicId(int clinicId) {
-        this.clinicId = clinicId;
+    public void setClinic(Clinic clinic) {
+        this.clinic = clinic;
     }
 }

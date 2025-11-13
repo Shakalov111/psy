@@ -21,7 +21,7 @@ public class Clinic {
     private String house;
 
     @Column(name ="phone_number")
-    private String phone_number;
+    private String phoneNumber;
 
 
     // Getters and Setters
@@ -41,8 +41,28 @@ public class Clinic {
         return house;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setClinicId(int clinicId) {
+        this.clinicId = clinicId;
+    }
+
+    public void setHouse(String house) {
+        this.house = house;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
     }
 
 }

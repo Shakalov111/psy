@@ -9,25 +9,25 @@ public class InfoDTO {
     private String psychologistName;
     private String meetingPlatform;
     private String prepayment;
-    private String sessionPackage;
     private String topic;
-    private int expirience;
+    private int experience;
     private String clinicAdress;
     private LocalDate date;
     private String clinicPhoneNumber;
+    private String pack;
 
 
     // Constructor
-    public InfoDTO(String clientFirstName, String clientLastName, String psychologistName, String meetingPlatform, String prepayment,String sessionPackage, String topic, int expirience, String clinicAdress, String clinicPhoneNumber, LocalDate date){
+    public InfoDTO(String clientFirstName, String clientLastName, String psychologistName, String meetingPlatform, String prepayment,String pack, String topic, int experience, String clinicAdress, String clinicPhoneNumber, LocalDate date){
         this.topic = topic;
         this.clientFirstName = clientFirstName;
         this.clientLastName = clientLastName;
         this.psychologistName = psychologistName;
         this.meetingPlatform =meetingPlatform;
         this.prepayment = prepayment;
-        this.sessionPackage = sessionPackage;
+        this.pack = pack;
         this.date = date;
-        this.expirience = expirience;
+        this.experience = experience;
         this.clinicAdress = clinicAdress;
         this.clinicPhoneNumber = clinicPhoneNumber;
 
@@ -51,8 +51,8 @@ public class InfoDTO {
         return date;
     }
 
-    public int getExpirience() {
-        return expirience;
+    public int getExperience() {
+        return experience;
     }
 
     public String getMeetingPlatform() {
@@ -67,8 +67,8 @@ public class InfoDTO {
         return psychologistName;
     }
 
-    public String getSessionPackage() {
-        return sessionPackage;
+    public String getpack() {
+        return pack;
     }
 
     public String getTopic() {
@@ -78,4 +78,5 @@ public class InfoDTO {
     public String getClinicPhoneNumber() {
         return clinicPhoneNumber;
     }
+
 }

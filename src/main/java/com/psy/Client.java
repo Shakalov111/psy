@@ -63,7 +63,7 @@ public class Client {
         this.lastName = lastName;
     }
 
-    public void setPack(String pack) {
+    public void setpack(String pack) {
         this.pack = pack;
     }
 
@@ -75,8 +75,7 @@ public class Client {
         this.sessionNumber = sessionNumber;
     }
 
-    public void setSessionPackage(String string) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setSessionPackage'");
-    }
+
+
+
 }

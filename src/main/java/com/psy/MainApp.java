@@ -52,7 +52,7 @@ public class MainApp {
 
         // Перша транзакція: Додавання даних 
         try (Session session = factory.openSession()) {
-
+            session.beginTransaction();
             Clinic clinic = new Clinic();
             clinic.setCity("Київ");
             clinic.setStreet("вул. Психології");
@@ -62,7 +62,7 @@ public class MainApp {
 
             Psychologist psy = new Psychologist();
             psy.setName("Олег Гнатюк");
-            psy.setExperiece(9);
+            psy.setExperience(9);
             psy.setMeetingPlatform("Zoom");
             psy.setClinic(clinic);
             session.persist(psy);
@@ -71,7 +71,7 @@ public class MainApp {
             client.setFirstName("Антонюк");
             client.setLastName("Іван");
             client.setPrepayment("Basic");
-            client.setSessionPackage("CBT");
+            client.setpack("CBT");
             client.setSessionNumber(12);
             session.persist(client);
 
@@ -81,6 +81,7 @@ public class MainApp {
             psySession.setTopic("тривога");
             psySession.setDate(LocalDate.now());
             session.persist(psySession);
+            session.getTransaction().commit();
             ;
                         
         } catch (Exception e) {
@@ -95,14 +96,15 @@ public class MainApp {
             // Виконання запиту
             String hql = "SELECT new com.psy.InfoDTO(" +
                     "c.firstName, c.lastName, " +
-                    "p.Name, p.meetingPlatform, " +
-                    "prepayment, " +
-                    "CONCAT(c.package, ' ', c.sessionNumber), " +
+                    "p.name, p.meetingPlatform, " +
+                    "c.prepayment, " +
+                    "CONCAT(c.pack, ' ', c.sessionNumber), " +
                     "s.topic," +
-                    "p.expirience,"+
+                    "p.experience,"+
                     "CONCAT(cl.city, ' ', cl.street, ' ', cl.house),"+
-                    "s.date" +
-                    "FROM p_session s " +
+                    "cl.phoneNumber," +
+                    "s.date) " +
+                    "FROM PSession s " +
                     "JOIN s.client c " +
                     "JOIN s.psychologist p " +
                     "JOIN p.clinic cl ";
@@ -112,13 +114,13 @@ public class MainApp {
 
             // Обробка результатів
             for (InfoDTO info : results) {
-                System.out.println("Ім'я клієнта: " + info.getClientFirstName() + " " + info.getClientFirstName());
+                System.out.println("Ім'я клієнта: " + info.getClientFirstName() + " " + info.getClientLastName());
                 System.out.println("Фамілія психолога: " + info.getPsychologistName());
                 System.out.println("Платформа відеозв'язку: " + info.getMeetingPlatform());
                 System.out.println("Тип передплати: " + info.getPrepayment());
-                System.out.println("Пакет сеансів: " + info.getSessionPackage());
+                System.out.println("Пакет сеансів: " + info.getpack());
                 System.out.println("Тема сеансів: " + info.getTopic());
-                System.out.println("Стаж психолога: " + info.getExpirience());
+                System.out.println("Стаж психолога: " + info.getExperience());
                 System.out.println("Адреса клініки: " + info.getClinicAdress());
                 System.out.println("Телефон клініки: " + info.getClinicPhoneNumber());
                 System.out.println("Дата зустрічі: " + info.getDate());

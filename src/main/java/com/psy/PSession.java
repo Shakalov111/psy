@@ -63,8 +63,7 @@ public class PSession {
     }
 
     public void setTopic(String string) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setTopic'");
+        this.topic = string;
     }
 }
     

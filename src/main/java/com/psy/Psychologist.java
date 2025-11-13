@@ -13,8 +13,8 @@ public class Psychologist {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "experiece")
-    private int experiece;
+    @Column(name = "experience")
+    private int experience;
 
      @Column(name = "meeting_platform")
     private String meetingPlatform;
@@ -32,8 +32,8 @@ public class Psychologist {
         return name;
     }
 
-    public int getExperiece() {
-        return experiece;
+    public int getExperience() {
+        return experience;
     }
 
     public String getMeetingPlatform() {
@@ -51,8 +51,8 @@ public class Psychologist {
     public void setName(String name) {
         this.name = name;
     }
-    public void setExperiece(int experiece) {
-        this.experiece = experiece;
+    public void setExperience(int experiece) {
+        this.experience = experiece;
     }
 
     public void setMeetingPlatform(String meetingPlatform) {

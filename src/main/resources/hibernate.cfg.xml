@@ -30,7 +30,7 @@
         <!-- List of annotated entity classes -->
         <mapping class="com.psy.Psychologist"/>
         <mapping class="com.psy.Client"/>
-        <mapping class="com.psy.Session"/>
+        <mapping class="com.psy.PSession"/>
         <mapping class="com.psy.Clinic"/>
     </session-factory>
 </hibernate-configuration>
